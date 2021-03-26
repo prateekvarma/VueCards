@@ -2,17 +2,21 @@
     <div>
         <h1>Create an Event, {{ userName }}</h1>
         <p>This was created by {{ userName }}</p>
+        <ul v-for="cat in categories" :key="cat">
+            <li>{{ cat }}</li>
+        </ul>
     </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
     export default {
-        computed: {
-            userName() {
-                return this.$store.state.user.name
-            }
+        computed: mapState({
+            userName: state => state.user.name,
+            userId: state => state.user.id,
+            categories: state => state.categories
+        })
         }
-    }
 </script>
 
 <style scoped>
